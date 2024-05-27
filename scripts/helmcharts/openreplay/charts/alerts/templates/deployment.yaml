@@ -58,7 +58,14 @@ spec:
             - name: ch_username
               value: '{{ .Values.global.clickhouse.username }}'
             - name: ch_password
-              value: '{{ .Values.global.clickhouse.passwordk }}'
+              {{- if .Values.global.clickhouse.existingSecret }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.global.clickhouse.existingSecret }}
+                  key: clickhouse-password
+              {{- else }}
+              value: '{{ .Values.global.clickhouse.password }}'
+              {{- end }}
             - name: pg_user
               value: '{{ .Values.global.postgresql.postgresqlUser }}'
             - name: pg_password
@@ -126,16 +133,18 @@ spec:
               containerPort: {{ $val }}
               protocol: TCP
             {{- end }}
-          {{- with .Values.persistence.mounts  }}
           volumeMounts:
+          {{- include "openreplay.volume.redis_ca_certificate.mount" .Values.global.redis | nindent 12 }}
+          {{- with .Values.persistence.mounts  }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.persistence.volumes  }}
       volumes:
+      {{- with .Values.persistence.volumes  }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- include "openreplay.volume.redis_ca_certificate" .Values.global.redis | nindent 8 }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
