@@ -1,5 +1,0 @@
-repoUrl: https://github.com/openreplay/openreplay
-path: scripts/helmcharts/openreplay
-ref: v1.17.0
-valuesFile:
-- $values/openreplay/values.yaml
