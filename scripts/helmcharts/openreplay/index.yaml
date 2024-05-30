@@ -1,1 +1,27 @@
-Hello GitHub Pages
+apiVersion: v1
+entries:
+  openreplay:
+  - apiVersion: v2
+    appVersion: v1.17.0
+    created: "2024-05-30T12:00:56.998084+01:00"
+    dependencies:
+    - condition: ingress-nginx.enabled
+      name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: 4.x.x
+    - condition: quickwit.enabled
+      name: quickwit
+      repository: file://charts/quickwit
+      version: 0.3.1
+    - condition: connector.enabled
+      name: connector
+      repository: file://charts/connector
+      version: 0.1.1
+    description: A Helm chart for Kubernetes
+    digest: 4f358e920143394721bbebb6bb6f1bb4bc5d04bd19b5b88c570b09a71fbb1304
+    name: openreplay
+    type: application
+    urls:
+    - openreplay-0.1.0.tgz
+    version: 0.1.0
+generated: "2024-05-30T12:00:56.987337+01:00"
