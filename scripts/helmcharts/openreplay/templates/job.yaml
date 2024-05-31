@@ -328,7 +328,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: {{ .Values.global.clickhouse.existingSecret }}
-                key: clickhouse-password
+                key: clickhousepassword
             {{- else }}
             value: "{{ .Values.global.clickhouse.password }}"
             {{- end }}
