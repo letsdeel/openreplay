@@ -10,7 +10,7 @@ on:
 
 jobs:
   create-vcluster-pr:
-    runs-on: ubuntu-latest
+    runs-on: [global-reporting]
     env:
       build_service: ${{ github.event.inputs.build_service }}
       env_flavour: ${{ github.event.inputs.env_flavour }}
