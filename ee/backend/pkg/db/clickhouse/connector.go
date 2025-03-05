@@ -22,7 +22,7 @@ type Connector interface {
 	Prepare() error
 	Commit() error
 	Stop() error
-	// Web
+	/// Web
 	InsertWebSession(session *sessions.Session) error
 	InsertWebPageEvent(session *sessions.Session, msg *messages.PageEvent) error
 	InsertWebClickEvent(session *sessions.Session, msg *messages.MouseClick) error
