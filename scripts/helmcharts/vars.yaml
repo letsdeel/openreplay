@@ -108,7 +108,7 @@ ingress-nginx: &ingress-nginx
       force-ssl-redirect: false
       proxy-body-size: 10m
 
-# Application specific variables
+## Application specific variables
 global:
   ingress: *ingress-nginx
   postgresql: *postgres
